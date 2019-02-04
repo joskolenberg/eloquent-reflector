@@ -4,6 +4,7 @@ namespace JosKolenberg\EloquentReflector;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
 use JosKolenberg\EloquentReflector\Support\Attributes\Attribute;
 use JosKolenberg\EloquentReflector\Support\Attributes\AttributesCollection;
@@ -75,7 +76,7 @@ class EloquentReflector
     protected function loadAttributes()
     {
         if(is_null($this->attributesCollection)){
-            $attributesCollection = new AttributesCollection();
+            $attributesCollection = new Collection();
 
             foreach (Schema::connection($this->model->getConnectionName())->getColumnListing($this->model->getTable()) as $column){
                 $attributesCollection->push(new Attribute($column, false, $this->getColumnType($column)));
