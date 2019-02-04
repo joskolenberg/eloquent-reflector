@@ -6,7 +6,7 @@ class Person extends Model
 {
 
     protected $casts = [
-        'id' => 'integer',
+        'id' => 'bool',
     ];
 
     protected $appends = [
