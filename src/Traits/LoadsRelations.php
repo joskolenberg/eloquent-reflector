@@ -197,6 +197,6 @@ trait LoadsRelations
         }
 
         // No namespace present, just return the original class name.
-        return null;
+        return $className;
     }
 }
