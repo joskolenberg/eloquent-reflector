@@ -2,6 +2,8 @@
 
 namespace JosKolenberg\EloquentReflector\Tests\Models;
 
+use Illuminate\Database\Eloquent\Model;
+
 class Album extends Model{
     protected $casts = [
         'id' => 'integer',
@@ -16,31 +18,11 @@ class Album extends Model{
 
     public function getFullNameAttribute()
     {
-        return 'Jos';
+        return $this->firstname . ' ' . $this->last_name;
     }
 
     public function getCustomBooleanAttribute()
     {
         return true;
-    }
-
-    public function songs()
-    {
-        return $this->hasMany(Song::class);
-    }
-
-    public function band()
-    {
-        return $this->belongsTo(Band::class);
-    }
-
-    public function cover()
-    {
-        return $this->hasOne(AlbumCover::class);
-    }
-
-    public function albumCover()
-    {
-        return $this->hasOne(AlbumCover::class);
     }
 }

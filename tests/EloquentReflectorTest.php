@@ -2,9 +2,10 @@
 
 namespace JosKolenberg\EloquentReflector\Tests;
 
+use Orchestra\Testbench\TestCase;
 use JosKolenberg\EloquentReflector\EloquentReflector;
-use JosKolenberg\EloquentReflector\Support\Attributes\Attribute;
 use JosKolenberg\EloquentReflector\Tests\Models\Album;
+use JosKolenberg\EloquentReflector\Support\Attribute;
 
 class EloquentReflectorTest extends TestCase
 {

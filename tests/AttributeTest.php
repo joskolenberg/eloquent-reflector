@@ -2,13 +2,35 @@
 
 namespace JosKolenberg\EloquentReflector\Tests;
 
+use Orchestra\Testbench\TestCase;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Application;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Query\Grammars\MySqlGrammar;
 use JosKolenberg\EloquentReflector\EloquentReflector;
 use JosKolenberg\EloquentReflector\Tests\Models\Album;
-use JosKolenberg\EloquentReflector\Tests\Models\Band;
-use JosKolenberg\EloquentReflector\Tests\Models\Person;
 
 class AttributeTest extends TestCase
 {
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->setUpDatabase($this->app);
+    }
+
+    protected function setUpDatabase(Application $app)
+    {
+        DB::connection()->setQueryGrammar(new MySqlGrammar());
+
+        $app['db']->connection()->getSchemaBuilder()->create('albums', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->unsignedInteger('band_id');
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('restrict');
+            $table->date('release_date');
+        });
+    }
 
     /** @test */
     public function it_can_give_all_attributes()
