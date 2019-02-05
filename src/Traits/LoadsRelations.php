@@ -13,7 +13,6 @@ use JosKolenberg\EloquentReflector\Support\Relation;
  */
 trait LoadsRelations
 {
-
     /**
      * Collection to store the relations.
      *
@@ -99,7 +98,7 @@ trait LoadsRelations
      * @param string $filename
      * @return bool|string|null
      */
-    protected function getRealClassNameFromFile(string $classString, string $filename):? string
+    protected function getRealClassNameFromFile(string $classString, string $filename): ?string
     {
         // Check for a full classname in double quoted string.
         if (starts_with($classString, '"') && ends_with($classString, '"')) {
@@ -164,7 +163,7 @@ trait LoadsRelations
      * @param string $filename
      * @return string|null
      */
-    protected function resolveClassNameFromFile(string $className, string $filename):? string
+    protected function resolveClassNameFromFile(string $className, string $filename): ?string
     {
         // If classname starts with a backslash it must be a fully qualified classname, so just return that one.
         if (starts_with($className, "\\")) {

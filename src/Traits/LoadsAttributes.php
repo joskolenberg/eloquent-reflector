@@ -58,7 +58,7 @@ trait LoadsAttributes
      * @param string $column
      * @return string|null
      */
-    protected function getColumnType(Model $model, string $column):? string
+    protected function getColumnType(Model $model, string $column): ?string
     {
         // Check if the column is casted on the model.
         if (array_key_exists($column, $model->getCasts())) {
@@ -71,4 +71,5 @@ trait LoadsAttributes
         }
 
         return null;
-    }}
+    }
+}
