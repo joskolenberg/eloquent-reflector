@@ -35,7 +35,7 @@ trait LoadsAttributes
             $attributesCollection->push(new Attribute($column, false, $this->getColumnType($model, $column)));
         }
 
-        // Add all the attributes with custom accessors by reflacting the model.
+        // Add all the attributes with custom accessors by reflecting the model.
         $publicMethods = (new \ReflectionClass($model))->getMethods(\ReflectionMethod::IS_PUBLIC);
         foreach ($publicMethods as $method) {
             $methodName = $method->name;
