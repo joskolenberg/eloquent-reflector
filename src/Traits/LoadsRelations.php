@@ -64,8 +64,7 @@ trait LoadsRelations
             }
         }
 
-        // Sort the relations by name and store them.
-        $this->relationsCollection = $relationsCollection->sortBy('name');
+        $this->relationsCollection = $relationsCollection;
     }
 
     /**

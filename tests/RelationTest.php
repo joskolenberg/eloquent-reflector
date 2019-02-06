@@ -26,9 +26,9 @@ class RelationTest extends TestCase
 
         $expectedRelations = [
             [
-                'name' => 'belongs_to_many_relation',
-                'type' => 'belongs_to_many',
-                'related' => BelongsToManyModel::class,
+                'name' => 'has_one_relation',
+                'type' => 'has_one',
+                'related' => HasOneModel::class,
             ],
             [
                 'name' => 'belongs_to_relation',
@@ -41,19 +41,19 @@ class RelationTest extends TestCase
                 'related' => HasManyModel::class,
             ],
             [
+                'name' => 'belongs_to_many_relation',
+                'type' => 'belongs_to_many',
+                'related' => BelongsToManyModel::class,
+            ],
+            [
                 'name' => 'has_many_through_relation',
                 'type' => 'has_many_through',
                 'related' => HasManyThroughModel::class,
             ],
             [
-                'name' => 'has_one_relation',
-                'type' => 'has_one',
-                'related' => HasOneModel::class,
-            ],
-            [
-                'name' => 'morph_many_relation',
-                'type' => 'morph_many',
-                'related' => FakeRelated2::class,
+                'name' => 'morph_to_relation',
+                'type' => 'morph_to',
+                'related' => null,
             ],
             [
                 'name' => 'morph_one_relation',
@@ -61,14 +61,14 @@ class RelationTest extends TestCase
                 'related' => FakeRelated1::class,
             ],
             [
+                'name' => 'morph_many_relation',
+                'type' => 'morph_many',
+                'related' => FakeRelated2::class,
+            ],
+            [
                 'name' => 'morph_to_many_relation',
                 'type' => 'morph_to_many',
                 'related' => FakeRelated3::class,
-            ],
-            [
-                'name' => 'morph_to_relation',
-                'type' => 'morph_to',
-                'related' => null,
             ],
             [
                 'name' => 'morphed_by_many_relation',
@@ -94,19 +94,19 @@ class RelationTest extends TestCase
 
         $expected = [
             'relationByClass' => FakeRelated1::class,
-            'relationByClassWithParams' => FakeRelated1::class,
-            'relationByDoubleQuotedString' => FakeRelated1::class,
-            'relationByDoubleQuotedStringWithParams' => FakeRelated1::class,
             'relationByFullClass' => FakeRelated1::class,
-            'relationByFullClassWithParams' => FakeRelated1::class,
             'relationByImportedClass' => FakeRelated3::class,
             'relationByImportedClassWithAlias' => FakeRelated2::class,
-            'relationByImportedClassWithAliasWithParams' => FakeRelated2::class,
-            'relationByImportedClassWithParams' => FakeRelated3::class,
             'relationByRootImport' => FakeRelated4::class,
-            'relationByRootImportWithParams' => FakeRelated4::class,
             'relationBySingleQuotedString' => FakeRelated1::class,
+            'relationByDoubleQuotedString' => FakeRelated1::class,
+            'relationByClassWithParams' => FakeRelated1::class,
+            'relationByFullClassWithParams' => FakeRelated1::class,
+            'relationByImportedClassWithParams' => FakeRelated3::class,
+            'relationByImportedClassWithAliasWithParams' => FakeRelated2::class,
+            'relationByRootImportWithParams' => FakeRelated4::class,
             'relationBySingleQuotedStringWithParams' => FakeRelated1::class,
+            'relationByDoubleQuotedStringWithParams' => FakeRelated1::class,
         ];
 
         foreach ($expected as $method => $expectedClass) {
@@ -123,15 +123,15 @@ class RelationTest extends TestCase
         $reflector = new EloquentReflector(RelationsModel::class);
 
         $expected = [
-            'belongs_to_many_relation',
+            'has_one_relation',
             'belongs_to_relation',
             'has_many_relation',
+            'belongs_to_many_relation',
             'has_many_through_relation',
-            'has_one_relation',
-            'morph_many_relation',
-            'morph_one_relation',
-            'morph_to_many_relation',
             'morph_to_relation',
+            'morph_one_relation',
+            'morph_many_relation',
+            'morph_to_many_relation',
             'morphed_by_many_relation',
         ];
 

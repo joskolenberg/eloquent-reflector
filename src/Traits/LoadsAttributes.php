@@ -46,8 +46,7 @@ trait LoadsAttributes
             }
         }
 
-        // Sort the attributes by name and store them.
-        $this->attributesCollection = $attributesCollection->sortBy('name');
+        $this->attributesCollection = $attributesCollection;
     }
 
     /**

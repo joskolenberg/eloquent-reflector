@@ -41,21 +41,6 @@ class AttributeTest extends TestCase
 
         $expectedCollection = [
             [
-                'name' => 'band_id',
-                'custom' => false,
-                'type' => 'integer',
-            ],
-            [
-                'name' => 'custom_boolean',
-                'custom' => true,
-                'type' => 'boolean',
-            ],
-            [
-                'name' => 'full_name',
-                'custom' => true,
-                'type' => 'string',
-            ],
-            [
                 'name' => 'id',
                 'custom' => false,
                 'type' => 'integer',
@@ -66,9 +51,24 @@ class AttributeTest extends TestCase
                 'type' => null,
             ],
             [
+                'name' => 'band_id',
+                'custom' => false,
+                'type' => 'integer',
+            ],
+            [
                 'name' => 'release_date',
                 'custom' => false,
                 'type' => 'carbon',
+            ],
+            [
+                'name' => 'full_name',
+                'custom' => true,
+                'type' => 'string',
+            ],
+            [
+                'name' => 'custom_boolean',
+                'custom' => true,
+                'type' => 'boolean',
             ],
         ];
 
@@ -88,12 +88,12 @@ class AttributeTest extends TestCase
         $bandReflector = new EloquentReflector(Album::class);
 
         $this->assertEquals([
-            'band_id',
-            'custom_boolean',
-            'full_name',
             'id',
             'name',
+            'band_id',
             'release_date',
+            'full_name',
+            'custom_boolean',
         ], $bandReflector->getAttributeNames());
 
     }
