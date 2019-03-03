@@ -13,6 +13,7 @@ use JosKolenberg\EloquentReflector\Tests\Models\BelongsToModel;
 use JosKolenberg\EloquentReflector\Tests\Models\RelationsModel;
 use JosKolenberg\EloquentReflector\Tests\Models\Sub\FakeRelated3;
 use JosKolenberg\EloquentReflector\Tests\Models\BelongsToManyModel;
+use JosKolenberg\EloquentReflector\Tests\Models\HasOneThroughModel;
 use JosKolenberg\EloquentReflector\Tests\Models\HasManyThroughModel;
 
 class RelationTest extends TestCase
@@ -49,6 +50,11 @@ class RelationTest extends TestCase
                 'name' => 'has_many_through_relation',
                 'type' => 'has_many_through',
                 'related' => HasManyThroughModel::class,
+            ],
+            [
+                'name' => 'has_one_through_relation',
+                'type' => 'has_one_through',
+                'related' => HasOneThroughModel::class,
             ],
             [
                 'name' => 'morph_to_relation',
@@ -128,6 +134,7 @@ class RelationTest extends TestCase
             'has_many_relation',
             'belongs_to_many_relation',
             'has_many_through_relation',
+            'has_one_through_relation',
             'morph_to_relation',
             'morph_one_relation',
             'morph_many_relation',

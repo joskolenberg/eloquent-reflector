@@ -12,7 +12,7 @@ use JosKolenberg\EloquentReflector\Tests\Models\Album;
 
 class AttributeTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

@@ -32,6 +32,11 @@ class RelationsModel extends Model
         return $this->hasManyThrough(HasManyThroughModel::class, 'Another::class');
     }
 
+    public function hasOneThroughRelation()
+    {
+        return $this->hasOneThrough(HasOneThroughModel::class, FakeRelated1::class);
+    }
+
     public function morphToRelation()
     {
         return $this->morphTo();

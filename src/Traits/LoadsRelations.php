@@ -146,6 +146,7 @@ trait LoadsRelations
             'hasMany',
             'belongsToMany',
             'hasManyThrough',
+            'hasOneThrough',
             'morphTo',
             'morphOne',
             'morphMany',
