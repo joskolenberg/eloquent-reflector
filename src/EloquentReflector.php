@@ -79,7 +79,9 @@ class EloquentReflector
      */
     public function getRelation(string $name): ?Relation
     {
-        return $this->relationsCollection->firstWhere('name', $name);
+        return $this->relationsCollection->first(function ($value) use ($name) {
+            return $value->name === $name;
+        });
     }
 
     /**
@@ -121,7 +123,7 @@ class EloquentReflector
      */
     public function getAttribute(string $name): ?Attribute
     {
-        return $this->attributesCollection->first(function ($value, $key) use ($name) {
+        return $this->attributesCollection->first(function ($value) use ($name) {
             return $value->name === $name;
         });
     }
