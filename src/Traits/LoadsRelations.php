@@ -4,6 +4,7 @@ namespace JosKolenberg\EloquentReflector\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use JosKolenberg\EloquentReflector\Support\Relation;
 
 /**
@@ -50,15 +51,15 @@ trait LoadsRelations
                 // Create a string which could only be present in the codeblock if the function holds this type of relation.
                 $relationIdentifier = 'publicfunction'.$methodName.'(){return$this->'.$relationType.'(';
 
-                if (starts_with($methodBlock, $relationIdentifier)) {
+                if (Str::startsWith($methodBlock, $relationIdentifier)) {
 
                     // Extract the reference to the related class from the code (first argument) including any quotes
                     // and pass it to the method to get the real fully qualified class name.
-                    $classString = str_before(str_before(str_after($methodBlock, $relationIdentifier), ','), ')');
+                    $classString = Str::before(Str::before(Str::after($methodBlock, $relationIdentifier), ','), ')');
                     $realModelClass = $this->getRealClassNameFromFile($classString, $method->getFileName());
 
                     // Add the relation and break out.
-                    $relationsCollection->push(new Relation(snake_case($methodName), snake_case($relationType), $realModelClass));
+                    $relationsCollection->push(new Relation(Str::snake($methodName), Str::snake($relationType), $realModelClass));
                     break;
                 }
             }
@@ -100,19 +101,19 @@ trait LoadsRelations
     protected function getRealClassNameFromFile(string $classString, string $filename): ?string
     {
         // Check for a full classname in double quoted string.
-        if (starts_with($classString, '"') && ends_with($classString, '"')) {
+        if (Str::startsWith($classString, '"') && Str::endsWith($classString, '"')) {
             return substr($classString, 1, -1);
         }
 
         // Check for a full classname in single quoted string.
-        if (starts_with($classString, "'") && ends_with($classString, "'")) {
+        if (Str::startsWith($classString, "'") && Str::endsWith($classString, "'")) {
             return substr($classString, 1, -1);
         }
 
         // Check for a reference using php's Model::class notation.
-        if (ends_with($classString, '::class')) {
+        if (Str::endsWith($classString, '::class')) {
             // Remove the '::class' part
-            $className = str_before($classString, '::class');
+            $className = Str::before($classString, '::class');
 
             return $this->resolveClassNameFromFile($className, $filename);
         }
@@ -166,7 +167,7 @@ trait LoadsRelations
     protected function resolveClassNameFromFile(string $className, string $filename): ?string
     {
         // If classname starts with a backslash it must be a fully qualified classname, so just return that one.
-        if (starts_with($className, "\\")) {
+        if (Str::startsWith($className, "\\")) {
             return substr($className, 1);
         }
 
@@ -177,21 +178,21 @@ trait LoadsRelations
         // First check for a use statement for the classname, when found return the classname.
         foreach ($fileLines as $line) {
             // Check for import by alias
-            if (starts_with($line, 'use ') && ends_with($line, ' as '.$className.";")) {
-                return str_before(str_after($line, 'use '), ' as ');
+            if (Str::startsWith($line, 'use ') && Str::endsWith($line, ' as '.$className.";")) {
+                return Str::before(Str::after($line, 'use '), ' as ');
             }
 
             // Check for regular import
-            if ((starts_with($line, 'use ') && ends_with($line, '\\'.$className.";")) || $line === 'use '.$className.';') {
-                return str_before(str_after($line, 'use '), ';');
+            if ((Str::startsWith($line, 'use ') && Str::endsWith($line, '\\'.$className.";")) || $line === 'use '.$className.';') {
+                return Str::before(Str::after($line, 'use '), ';');
             }
         }
 
         // The class name isn't imported by a use statement so it must be relative.
         // Find the namespace declaration and add the classname to it.
         foreach ($fileLines as $line) {
-            if (starts_with($line, 'namespace ')) {
-                return str_before(str_after($line, 'namespace '), ';')."\\".$className;
+            if (Str::startsWith($line, 'namespace ')) {
+                return Str::before(Str::after($line, 'namespace '), ';')."\\".$className;
             }
         }
 

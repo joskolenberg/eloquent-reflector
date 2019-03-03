@@ -3,18 +3,19 @@
 namespace JosKolenberg\EloquentReflector\Tests;
 
 use FakeRelated4;
-use Orchestra\Testbench\TestCase;
+use Illuminate\Support\Str;
 use JosKolenberg\EloquentReflector\EloquentReflector;
-use JosKolenberg\EloquentReflector\Tests\Models\HasOneModel;
+use JosKolenberg\EloquentReflector\Tests\Models\BelongsToManyModel;
+use JosKolenberg\EloquentReflector\Tests\Models\BelongsToModel;
 use JosKolenberg\EloquentReflector\Tests\Models\FakeRelated1;
 use JosKolenberg\EloquentReflector\Tests\Models\FakeRelated2;
 use JosKolenberg\EloquentReflector\Tests\Models\HasManyModel;
-use JosKolenberg\EloquentReflector\Tests\Models\BelongsToModel;
+use JosKolenberg\EloquentReflector\Tests\Models\HasManyThroughModel;
+use JosKolenberg\EloquentReflector\Tests\Models\HasOneModel;
+use JosKolenberg\EloquentReflector\Tests\Models\HasOneThroughModel;
 use JosKolenberg\EloquentReflector\Tests\Models\RelationsModel;
 use JosKolenberg\EloquentReflector\Tests\Models\Sub\FakeRelated3;
-use JosKolenberg\EloquentReflector\Tests\Models\BelongsToManyModel;
-use JosKolenberg\EloquentReflector\Tests\Models\HasOneThroughModel;
-use JosKolenberg\EloquentReflector\Tests\Models\HasManyThroughModel;
+use Orchestra\Testbench\TestCase;
 
 class RelationTest extends TestCase
 {
@@ -117,7 +118,7 @@ class RelationTest extends TestCase
 
         foreach ($expected as $method => $expectedClass) {
             $relation = $collection->shift();
-            $this->assertEquals(snake_case($method), $relation->name);
+            $this->assertEquals(Str::snake($method), $relation->name);
             $this->assertEquals('has_one', $relation->type);
             $this->assertEquals($expectedClass, $relation->relatedModelClass);
         }

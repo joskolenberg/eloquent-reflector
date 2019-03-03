@@ -5,6 +5,7 @@ namespace JosKolenberg\EloquentReflector\Traits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 use JosKolenberg\EloquentReflector\Support\Attribute;
 
 /**
@@ -40,8 +41,8 @@ trait LoadsAttributes
         foreach ($publicMethods as $method) {
             $methodName = $method->name;
 
-            if (starts_with($methodName, 'get') && ends_with($methodName, 'Attribute') && strlen($methodName) > 12) {
-                $attributeName = snake_case(substr($methodName, 3, -9));
+            if (Str::startsWith($methodName, 'get') && Str::endsWith($methodName, 'Attribute') && strlen($methodName) > 12) {
+                $attributeName = Str::snake(substr($methodName, 3, -9));
                 $attributesCollection->push(new Attribute($attributeName, true, $this->getColumnType($model, $attributeName)));
             }
         }
