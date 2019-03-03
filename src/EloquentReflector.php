@@ -121,7 +121,9 @@ class EloquentReflector
      */
     public function getAttribute(string $name): ?Attribute
     {
-        return $this->attributesCollection->firstWhere('name', $name);
+        return $this->attributesCollection->first(function ($value, $key) use ($name) {
+            return $value->name === $name;
+        });
     }
 
     /**
