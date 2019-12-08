@@ -28,58 +28,58 @@ class RelationTest extends TestCase
 
         $expectedRelations = [
             [
-                'name' => 'has_one_relation',
-                'type' => 'has_one',
+                'name' => 'hasOneRelation',
+                'type' => 'hasOne',
                 'related' => HasOneModel::class,
             ],
             [
-                'name' => 'belongs_to_relation',
-                'type' => 'belongs_to',
+                'name' => 'belongsToRelation',
+                'type' => 'belongsTo',
                 'related' => BelongsToModel::class,
             ],
             [
-                'name' => 'has_many_relation',
-                'type' => 'has_many',
+                'name' => 'hasManyRelation',
+                'type' => 'hasMany',
                 'related' => HasManyModel::class,
             ],
             [
-                'name' => 'belongs_to_many_relation',
-                'type' => 'belongs_to_many',
+                'name' => 'belongsToManyRelation',
+                'type' => 'belongsToMany',
                 'related' => BelongsToManyModel::class,
             ],
             [
-                'name' => 'has_many_through_relation',
-                'type' => 'has_many_through',
+                'name' => 'hasManyThroughRelation',
+                'type' => 'hasManyThrough',
                 'related' => HasManyThroughModel::class,
             ],
             [
-                'name' => 'has_one_through_relation',
-                'type' => 'has_one_through',
+                'name' => 'hasOneThroughRelation',
+                'type' => 'hasOneThrough',
                 'related' => HasOneThroughModel::class,
             ],
             [
-                'name' => 'morph_to_relation',
-                'type' => 'morph_to',
+                'name' => 'morphToRelation',
+                'type' => 'morphTo',
                 'related' => null,
             ],
             [
-                'name' => 'morph_one_relation',
-                'type' => 'morph_one',
+                'name' => 'morphOneRelation',
+                'type' => 'morphOne',
                 'related' => FakeRelated1::class,
             ],
             [
-                'name' => 'morph_many_relation',
-                'type' => 'morph_many',
+                'name' => 'morphManyRelation',
+                'type' => 'morphMany',
                 'related' => FakeRelated2::class,
             ],
             [
-                'name' => 'morph_to_many_relation',
-                'type' => 'morph_to_many',
+                'name' => 'morphToManyRelation',
+                'type' => 'morphToMany',
                 'related' => FakeRelated3::class,
             ],
             [
-                'name' => 'morphed_by_many_relation',
-                'type' => 'morphed_by_many',
+                'name' => 'morphedByManyRelation',
+                'type' => 'morphedByMany',
                 'related' => FakeRelated1::class,
             ],
         ];
@@ -118,8 +118,8 @@ class RelationTest extends TestCase
 
         foreach ($expected as $method => $expectedClass) {
             $relation = $collection->shift();
-            $this->assertEquals(Str::snake($method), $relation->name);
-            $this->assertEquals('has_one', $relation->type);
+            $this->assertEquals($method, $relation->name);
+            $this->assertEquals('hasOne', $relation->type);
             $this->assertEquals($expectedClass, $relation->relatedModelClass);
         }
     }
@@ -130,17 +130,17 @@ class RelationTest extends TestCase
         $reflector = new EloquentReflector(RelationsModel::class);
 
         $expected = [
-            'has_one_relation',
-            'belongs_to_relation',
-            'has_many_relation',
-            'belongs_to_many_relation',
-            'has_many_through_relation',
-            'has_one_through_relation',
-            'morph_to_relation',
-            'morph_one_relation',
-            'morph_many_relation',
-            'morph_to_many_relation',
-            'morphed_by_many_relation',
+            'hasOneRelation',
+            'belongsToRelation',
+            'hasManyRelation',
+            'belongsToManyRelation',
+            'hasManyThroughRelation',
+            'hasOneThroughRelation',
+            'morphToRelation',
+            'morphOneRelation',
+            'morphManyRelation',
+            'morphToManyRelation',
+            'morphedByManyRelation',
         ];
 
         $this->assertEquals($expected, $reflector->getRelationNames());
@@ -151,9 +151,9 @@ class RelationTest extends TestCase
     {
         $reflector = new EloquentReflector(RelationsModel::class);
 
-        $relation = $reflector->getRelation('has_many_through_relation');
-        $this->assertEquals('has_many_through_relation', $relation->name);
-        $this->assertEquals('has_many_through', $relation->type);
+        $relation = $reflector->getRelation('hasManyThroughRelation');
+        $this->assertEquals('hasManyThroughRelation', $relation->name);
+        $this->assertEquals('hasManyThrough', $relation->type);
         $this->assertEquals(HasManyThroughModel::class, $relation->relatedModelClass);
 
         $this->assertNull($reflector->getRelation('has_many_through_relationn'));
@@ -164,7 +164,7 @@ class RelationTest extends TestCase
     {
         $reflector = new EloquentReflector(RelationsModel::class);
 
-        $this->assertTrue($reflector->hasRelation('has_many_through_relation'));
-        $this->assertFalse($reflector->hasRelation('has_many_through_relationn'));
+        $this->assertTrue($reflector->hasRelation('hasManyThroughRelation'));
+        $this->assertFalse($reflector->hasRelation('hasManyThroughRelationn'));
     }
 }

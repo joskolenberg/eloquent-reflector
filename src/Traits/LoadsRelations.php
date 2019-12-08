@@ -59,7 +59,7 @@ trait LoadsRelations
                     $realModelClass = $this->getRealClassNameFromFile($classString, $method->getFileName());
 
                     // Add the relation and break out.
-                    $relationsCollection->push(new Relation(Str::snake($methodName), Str::snake($relationType), $realModelClass));
+                    $relationsCollection->push(new Relation($methodName, $relationType, $realModelClass));
                     break;
                 }
             }
