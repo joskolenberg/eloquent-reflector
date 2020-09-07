@@ -2,20 +2,20 @@
     "name": "joskolenberg/eloquent-reflector",
     "description": "Laravel package for inspecting model classes on relations en attributes.",
     "require": {
-        "laravel/framework": "^5.5||^6.0||^7.0"
+        "laravel/framework": "^5.5|^6.0|^7.0|8.x-dev"
     },
     "keywords": ["eloquent", "laravel", "reflector", "relations", "attributes"],
     "require-dev": {
-        "orchestra/testbench": "^3.5||^4.0||^5.0"
+        "orchestra/testbench": "^3.5|^4.0|^5.0|6.x-dev"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Jos Kolenberg",
-            "email": "joskolenberg@gmail.com"
+            "email": "jos@kolenbergsoftwareontwikkeling.nl"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "JosKolenberg\\EloquentReflector\\": "src/"

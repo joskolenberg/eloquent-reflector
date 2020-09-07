@@ -10,4 +10,4 @@ A package to inspect Laravel's Eloquent models on available attributes and relat
 
 Primarily serves as a dev dependency for the [laravel-jory](https://packagist.org/packages/joskolenberg/laravel-jory) package to provide code generation.
 
-Jos Kolenberg <jos@kolenberg.net>
+Jos Kolenberg <jos@kolenbergsoftwareontwikkeling.nl>
