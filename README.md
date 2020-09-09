@@ -1,6 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/joskolenberg/eloquent-reflector/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/joskolenberg/eloquent-reflector/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/joskolenberg/eloquent-reflector/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/joskolenberg/eloquent-reflector/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/joskolenberg/eloquent-reflector/badges/build.png?b=master)](https://scrutinizer-ci.com/g/joskolenberg/eloquent-reflector/build-status/master)
+![Run Tests](https://github.com/joskolenberg/laravel-jory/workflows/Run%20Tests/badge.svg)
 [![Total Downloads](https://poser.pugx.org/joskolenberg/eloquent-reflector/downloads)](https://packagist.org/packages/joskolenberg/eloquent-reflector)
 [![Latest Stable Version](https://poser.pugx.org/joskolenberg/eloquent-reflector/v/stable)](https://packagist.org/packages/joskolenberg/eloquent-reflector)
 [![License](https://poser.pugx.org/joskolenberg/eloquent-reflector/license)](https://packagist.org/packages/joskolenberg/eloquent-reflector)
