@@ -58,7 +58,7 @@ class AttributeTest extends TestCase
             [
                 'name' => 'release_date',
                 'custom' => false,
-                'type' => 'carbon',
+                'type' => 'datetime',
             ],
             [
                 'name' => 'full_name',

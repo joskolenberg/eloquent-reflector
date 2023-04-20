@@ -10,10 +10,7 @@ class Album extends Model{
         'band_id' => 'integer',
         'custom_boolean' => 'boolean',
         'full_name' => 'string',
-    ];
-
-    protected $dates = [
-        'release_date',
+        'release_date' => 'datetime',
     ];
 
     public function getFullNameAttribute()
