@@ -16,10 +16,11 @@ use JosKolenberg\EloquentReflector\Tests\Models\HasOneThroughModel;
 use JosKolenberg\EloquentReflector\Tests\Models\RelationsModel;
 use JosKolenberg\EloquentReflector\Tests\Models\Sub\FakeRelated3;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class RelationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_detect_different_kinds_of_relations()
     {
         $reflector = new EloquentReflector(RelationsModel::class);
@@ -92,7 +93,7 @@ class RelationTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_can_discover_related_class_names_in_different_definitions()
     {
         $reflector = new EloquentReflector(HasOneModel::class);
@@ -124,7 +125,7 @@ class RelationTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_can_give_all_relation_names()
     {
         $reflector = new EloquentReflector(RelationsModel::class);
@@ -146,7 +147,7 @@ class RelationTest extends TestCase
         $this->assertEquals($expected, $reflector->getRelationNames());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_give_a_single_relation()
     {
         $reflector = new EloquentReflector(RelationsModel::class);
@@ -159,7 +160,7 @@ class RelationTest extends TestCase
         $this->assertNull($reflector->getRelation('has_many_through_relationn'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_tell_if_an_relation_exists()
     {
         $reflector = new EloquentReflector(RelationsModel::class);

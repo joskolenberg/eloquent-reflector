@@ -6,11 +6,12 @@ use Orchestra\Testbench\TestCase;
 use JosKolenberg\EloquentReflector\EloquentReflector;
 use JosKolenberg\EloquentReflector\Tests\Models\Album;
 use JosKolenberg\EloquentReflector\Support\Attribute;
+use PHPUnit\Framework\Attributes\Test;
 
 class EloquentReflectorTest extends TestCase
 {
 
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated_with_an_instance_or_class_name()
     {
         $bandReflector = new EloquentReflector(Album::class);

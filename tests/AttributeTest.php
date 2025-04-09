@@ -2,13 +2,12 @@
 
 namespace JosKolenberg\EloquentReflector\Tests;
 
-use Orchestra\Testbench\TestCase;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Application;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Query\Grammars\MySqlGrammar;
+use Illuminate\Foundation\Application;
 use JosKolenberg\EloquentReflector\EloquentReflector;
 use JosKolenberg\EloquentReflector\Tests\Models\Album;
+use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class AttributeTest extends TestCase
 {
@@ -21,8 +20,6 @@ class AttributeTest extends TestCase
 
     protected function setUpDatabase(Application $app)
     {
-        DB::connection()->setQueryGrammar(new MySqlGrammar());
-
         $app['db']->connection()->getSchemaBuilder()->create('albums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -32,8 +29,8 @@ class AttributeTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_can_give_all_attributes()
+    #[Test]
+    public function test_it_can_give_all_attributes()
     {
         $bandReflector = new EloquentReflector(Album::class);
 
@@ -82,7 +79,7 @@ class AttributeTest extends TestCase
         $this->assertEmpty($collection);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_give_all_attribute_names()
     {
         $bandReflector = new EloquentReflector(Album::class);
@@ -98,7 +95,7 @@ class AttributeTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function it_can_give_a_single_attribute()
     {
         $bandReflector = new EloquentReflector(Album::class);
@@ -111,7 +108,7 @@ class AttributeTest extends TestCase
         $this->assertNull($bandReflector->getAttribute('fulll_name'));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_tell_if_an_attribute_exists()
     {
         $bandReflector = new EloquentReflector(Album::class);
