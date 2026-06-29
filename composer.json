@@ -1,12 +1,13 @@
 {
     "name": "joskolenberg/eloquent-reflector",
     "description": "Laravel package for inspecting model classes on relations en attributes.",
+    "version": "2.2.6",
     "require": {
-        "laravel/framework": "^8.0|^9.0|^10|^11.0|^12.0"
+        "laravel/framework": "^8.0|^9.0|^10|^11.0|^12.0|^13.0"
     },
     "keywords": ["eloquent", "laravel", "reflector", "relations", "attributes"],
     "require-dev": {
-        "orchestra/testbench": "^6.22|^7.0|^8.0|^9.0|^10.0"
+        "orchestra/testbench": "^6.22|^7.0|^8.0|^9.0|^10.0|^11.0"
     },
     "license": "MIT",
     "authors": [
